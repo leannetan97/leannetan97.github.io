@@ -365,15 +365,33 @@ input:checked + .slider:before {
 </div>
 
 <footer class="w3-container themeColorBackground w3-center w3-margin-top">
-	<p>Connect me with:<br>
+	<p class="w3-large">Connect me with:<br>
   		<a class="fa fa-linkedin w3-hover-opacity" href="https://www.linkedin.com/in/lay-yan-tan-7623ba162/" style="text-decoration: none;"></a>
   		<a class="fa fa-envelope w3-margin-left w3-hover-opacity" href="mailto:leannetan97@hotmail.com" style="text-decoration: none;"></a>
   	</p>
- 
+ 	
+ 	<p>or</p>
+ 	<p>
+ 	<form action="http://127.0.0.1:5000/send/" method="POST" target="invisible" id="messageForm" style="width: 60%; margin: auto;">
+ 		
+ 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Name" required="" name="Name"></p>
+ 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Email" required="" name="Email"></p>
+ 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Subject" required="" name="Subject"></p>
+ 		<p><textarea class="w3-input w3-border rounded" rows="4" cols="50" placeholder="Message" required="" name="Message"></textarea></p>
+ 		<p><button class="w3-center w3-button w3-white w3-text-brown rounded"  type="submit" form="messageForm" id="send"><i class="fa fa-paper-plane w3-margin-right"></i><b>SEND MESSAGE</b></button></p>
+ 		<div class="g-recaptcha" data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q" name = "g-recaptcha-response"  ></div>
+ 	</form>
+
+    </script>
+ </p>
   	<p> &copy 2019 Copyright:<a style="text-decoration: none;" href="https://github.com/leannetan97"> https://github.com/leannetan97 </a></p>
 
 </footer>
 
 </body>
+
+
 </html>
+
+
 
