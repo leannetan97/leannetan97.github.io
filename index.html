@@ -372,14 +372,18 @@ input:checked + .slider:before {
  	
  	<p>or</p>
  	<p>
- 	<form action="http://127.0.0.1:5000/send/" method="POST" target="invisible" id="messageForm" name = "g-recaptcha-response" style="width: 60%; margin: auto;">
+ 	<form action="http://127.0.0.1:5000/send/" method="POST" id="messageForm" style="width: 60%; margin: auto;">
  		
  		<p><input class="w3-input w3-border rounded" type="text" placeholder="Name" required="" name="Name"></p>
  		<p><input class="w3-input w3-border rounded" type="text" placeholder="Email" required="" name="Email"></p>
  		<p><input class="w3-input w3-border rounded" type="text" placeholder="Subject" required="" name="Subject"></p>
  		<p><textarea class="w3-input w3-border rounded" rows="4" cols="50" placeholder="Message" required="" name="Message"></textarea></p>
- 		<p><button class="w3-center w3-button w3-white w3-text-brown rounded g-recaptcha" data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q" data-callback="onSubmit" type="submit" id="send"><i class="fa fa-paper-plane w3-margin-right"></i><b>SEND MESSAGE</b></button></p>
+ 		<p><button class="w3-center w3-button w3-white w3-text-brown rounded" onclick = "onClickSendBtn" type="submit"><i class="fa fa-paper-plane w3-margin-right"></i><b>SEND MESSAGE</b></button></p>
  		<!-- <div class="g-recaptcha" data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q" name = "g-recaptcha-response"></div> -->
+ 		<div class="g-recaptcha"
+       data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q"
+       data-callback="onSubmit"
+       data-size="invisible">
  	</form>
 
     </script>
@@ -390,8 +394,14 @@ input:checked + .slider:before {
 
 </body>
 <script type="text/javascript">
+  var onClickSendBtn = function(response) {
+    grecaptcha.execute();
+    console.log("on click: " + response);
+  };
+
   var onSubmit = function(response) {
-    document.getElementById("messageForm").submit(); // send response to your backe
+    document.getElementById("messageForm").submit();
+    console.log("on Submit: " + response);
   };
 </script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
