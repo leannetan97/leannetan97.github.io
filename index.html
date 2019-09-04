@@ -7,6 +7,9 @@
 <!-- <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'> -->
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {
 	font-family: 'Nunito', sans-serif;
@@ -386,13 +389,10 @@ input:checked + .slider:before {
        data-size="normal">
  	</form>
 
-    </script>
  </p>
   	<p> &copy 2019 Copyright:<a style="text-decoration: none;" href="https://github.com/leannetan97"> https://github.com/leannetan97 </a></p>
 
 </footer>
-
-</body>
 <script type="text/javascript">
   var onClickSendBtn = function(response) {
     grecaptcha.execute();
@@ -404,7 +404,9 @@ input:checked + .slider:before {
     console.log("on Submit: " + response);
   };
 </script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+
+
 
 </html>
 
