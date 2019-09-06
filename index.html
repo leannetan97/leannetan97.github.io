@@ -7,9 +7,6 @@
 <!-- <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'> -->
 <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
 <style>
 html,body,h1,h2,h3,h4,h5,h6 {
 	font-family: 'Nunito', sans-serif;
@@ -82,6 +79,52 @@ input:checked + .slider:before {
 
 .themeOpacity{
 	opacity: 0.7;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  /*margin-left: -125px;  Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 2; /* Add a z-index if needed */
+  /*left: 50%;  Center the snackbar */
+  bottom: 50px; /* 50px from the bottom */
+}
+
+/* Show the snackbar*/
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }
 </style>
 <body class="w3-light-grey">
@@ -240,8 +283,7 @@ input:checked + .slider:before {
 
     <!-- Right Column -->
     <div class="w3-twothird">
-      
-    
+
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge themeColor"></i>Work Experience</h2>
 
@@ -331,31 +373,34 @@ input:checked + .slider:before {
           <h6 class="themeColor"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Semester 1 (Sep 2016) - Semester 6 (Jun 2019)</h6>
           <hr>
         </div>
+
         <div class="w3-container">
           <h5 class="w3-text-brown themeOpacity"><b>PROSOLVE - National Programming Competition</b></h5>
           <h6 class="themeColor"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Nov 2018</h6>
           <h6 class="themeColor"><i class="fa fa-trophy fa-fw w3-margin-right"></i>No.7</h6>
           <hr>
         </div>
+
         <div class="w3-container">
           <h5 class="w3-text-brown themeOpacity"><b>IEEEXtreme 24-Hour Programming Competition</b></h5>
           <h6 class="themeColor"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Oct 2018</h6>
           <h6 class="themeColor"><i class="fa fa-trophy fa-fw w3-margin-right"></i>No.3 (Malaysia Region)</h6>
           <hr>
         </div>
+
         <div class="w3-container">
           <h5 class="w3-text-brown themeOpacity"><b>E-Genting Programming Competition 2017</b></h5>
           <h6 class="themeColor"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Nov 2017</h6>
           <h6 class="themeColor"><i class="fa fa-trophy fa-fw w3-margin-right"></i>Merit Prize</h6>
           <hr>
         </div>
+
         <div class="w3-container">
           <h5 class="w3-text-brown themeOpacity"><b>i-UM Disrupt 2017</b></h5>
           <h6 class="themeColor"><i class="fa fa-calendar fa-fw w3-margin-right"></i>2017</h6>
           <h6 class="themeColor"><i class="fa fa-trophy fa-fw w3-margin-right"></i>Winner of CREST TGL Industry Challenge</h6>
           <br>
         </div>
-        
       </div>
 
     <!-- End Right Column -->
@@ -368,48 +413,77 @@ input:checked + .slider:before {
 </div>
 
 <footer class="w3-container themeColorBackground w3-center w3-margin-top">
-	<p class="w3-large">Connect me with:<br>
-  		<a class="fa fa-linkedin w3-hover-opacity" href="https://www.linkedin.com/in/lay-yan-tan-7623ba162/" style="text-decoration: none;"></a>
-  		<a class="fa fa-envelope w3-margin-left w3-hover-opacity" href="mailto:leannetan97@hotmail.com" style="text-decoration: none;"></a>
-  	</p>
+  <p class="w3-large">Connect me with:<br>
+  	<a class="fa fa-linkedin w3-hover-opacity" href="https://www.linkedin.com/in/lay-yan-tan-7623ba162/" style="text-decoration: none;"></a>
+  	<a class="fa fa-envelope w3-margin-left w3-hover-opacity" href="mailto:leannetan97@hotmail.com" style="text-decoration: none;"></a>
+  </p>
  	
  	<p>or</p>
+
  	<p>
- 	<form action="http://127.0.0.1:5000/send/" method="POST" id="messageForm" style="width: 60%; margin: auto;">
+ 	<form action="http://127.0.0.1:5000/send" method="POST" id="messageForm" style="width: 60%; margin: auto;" target="invisible">
  		
- 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Name" required="" name="Name"></p>
- 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Email" required="" name="Email"></p>
- 		<p><input class="w3-input w3-border rounded" type="text" placeholder="Subject" required="" name="Subject"></p>
- 		<p><textarea class="w3-input w3-border rounded" rows="4" cols="50" placeholder="Message" required="" name="Message"></textarea></p>
- 		<p></p>
- 		<!-- <div class="g-recaptcha" data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q" name = "g-recaptcha-response"></div> -->
- 		<div class="g-recaptcha"
-       data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q"
-       data-callback="onSubmit"
-       data-size="normal">
+  	<p><input class="w3-input w3-border rounded" type="text" placeholder="Name" required name="Name"></p>
+  	<p><input class="w3-input w3-border rounded" type="email" placeholder="Email" required name="Email"></p>
+  	<p><input class="w3-input w3-border rounded" type="text" placeholder="Subject" required name="Subject"></p>
+  	<p><textarea class="w3-input w3-border rounded" rows="4" cols="50" placeholder="Message" required name="Message"></textarea></p>
+  	
+  	<p><div style="display: none;" class="w3-center g-recaptcha"
+     data-sitekey="6LfPc7YUAAAAAL25smqqzJ_EnQFqGsX5hNvGZP_q"
+     data-callback="onSubmit"
+     data-size="normal"></div></p>
 
-       <script type="text/javascript">
-  var onClickSendBtn = function(response) {
-    grecaptcha.execute();
-    console.log("on click: " + response);
-  };
+  </form>
+ 
+  <button class="w3-center w3-button w3-white w3-text-brown rounded" onclick="onClickSendBtn()" ><i class="fa fa-paper-plane w3-margin-right"></i><b>SEND MESSAGE</b></button>
 
-  var onSubmit = function(response) {
-    document.getElementById("messageForm").submit();
-    console.log("on Submit: " + response);
-  };
-</script>
-
- 	</form>
-<button class="w3-center w3-button w3-white w3-text-brown rounded" onclick = "onClickSendBtn" ><i class="fa fa-paper-plane w3-margin-right"></i><b>SEND MESSAGE</b></button>
- </p>
-  	<p> &copy 2019 Copyright:<a style="text-decoration: none;" href="https://github.com/leannetan97"> https://github.com/leannetan97 </a></p>
+  <iframe id = "invisible" name = "invisible" style="display: none;">
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Response</title>
+    </head>
+    <body>
+    </body>
+    </html>
+  </iframe>
+  
+  <div id="snackbar"> Message Sent! I will get back to you later :)</div>
+  
+  </p>
+  
+  <p> &copy 2019 Copyright:<a style="text-decoration: none;" href="https://github.com/leannetan97"> https://github.com/leannetan97</a></p>
 
 </footer>
 
 </body>
 
+<script type="text/javascript">
+  var onClickSendBtn = function(response) {
+    if(!document.forms.messageForm.checkValidity()){
+      document.forms.messageForm.reportValidity();
+      return;
+    }else{
+      document.getElementsByClassName('g-recaptcha')[0].style.display = 'inline-block';
+      console.log("on click: " + response);    
+    }
+  };
 
+  var onSubmit = function(response) {
+    document.getElementById("messageForm").submit();
+
+    let x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ 
+      x.className = x.className.replace("show", ""); 
+    }, 5000);
+
+    document.getElementById("messageForm").reset();
+    document.getElementsByClassName('g-recaptcha')[0].style.display = 'none';
+    console.log("on Submit: " + response);
+  };
+</script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </html>
 
